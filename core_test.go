@@ -15,16 +15,16 @@ func TestInstallPayload(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if n != 6 {
-		t.Fatalf("expected 6 files, got %d", n)
+	if n != 7 {
+		t.Fatalf("expected 7 files, got %d", n)
 	}
-	for _, p := range []string{"lua/autorun/server/elr_server.lua", "lua/autorun/client/elr_client.lua", "tools/Watcher.ps1"} {
+	for _, p := range []string{"lua/autorun/server/elr_server.lua", "lua/autorun/client/elr_client.lua", "tools/Watcher.ps1", "lua/elr/web.lua"} {
 		if _, err := os.Stat(filepath.Join(root, "addons", addonFolder, filepath.FromSlash(p))); err != nil {
 			t.Fatal(err)
 		}
 	}
 	n, err = installPayload(root)
-	if err != nil || n != 6 {
+	if err != nil || n != 7 {
 		t.Fatalf("reinstall failed: %d %v", n, err)
 	}
 }
